@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/ui/screens/list_pokemon.dart';
 import 'package:pokedex/ui/screens/profil.dart';
-import '../../repositories/account_repository.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/account_cubit.dart';
-import '../../models/profil_model.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
