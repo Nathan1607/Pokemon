@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../repositories/account_repository.dart';
 import '../../blocs/account_cubit.dart';
 import '../../models/profil_model.dart';
-import '../../ui/screens/add_profil.dart';
 
 class Profil extends StatelessWidget {
   const Profil({Key? key}) : super(key: key);
@@ -19,9 +16,9 @@ class Profil extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               final Account account = accounts[index];
               return ListTile(
-                leading: const Icon(Icons.apartment),
+                leading: const Icon(Icons.account_circle_outlined),
                 title: Text(account.name),
-                subtitle: Text('${account.name} ${account.team}'),
+                subtitle: Text('Région de  ${account.region}'),
               );
             },
             separatorBuilder: (BuildContext context, int index) {

@@ -1,15 +1,15 @@
 class Account {
   final int id;
   final String name;
-  final String team;
+  final String region;
 
-  const Account(this.id,this.name, this.team);
+  const Account(this.id,this.name, this.region);
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
       'name': name,
-      'team': team,
+      'region': region,
     };
   }
 
@@ -17,7 +17,7 @@ class Account {
     return Account(
       json['id'],
       json['name'],
-      json['team']
+      json['region']
     );
   }
 }

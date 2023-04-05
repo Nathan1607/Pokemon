@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../models/pokemon.dart';
 import '../../repositories/pokemon_repository.dart';
+import '../../ui/screens/detail_pokemon.dart';
 
 class ListPokemon extends StatefulWidget {
   const ListPokemon({Key? key}) : super(key: key);
@@ -11,36 +12,77 @@ class ListPokemon extends StatefulWidget {
 }
 
 class _ListPokemonState extends State<ListPokemon> {
-  List<Pokemon> _pokemons = [
-    Pokemon(1, 'bulbasaur', '64',
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'),
-    Pokemon(2, 'ivysaur', '142',
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'),
-    Pokemon(2, 'ivysaur', '142',
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'),
-    Pokemon(2, 'ivysaur', '142',
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'),
-  ];
+  late Future<List<Pokemon>> _pokemons;
+
+  @override
+  void initState() {
+    super.initState();
+    _pokemons = PokemonRepository().fetchPokemon();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
+          TextField(
+            onChanged: (value) async {
+              if (value.length >= 3) {
+                final PokemonSearchRepository pokemonRepository =
+                    PokemonSearchRepository();
+                List<Pokemon> pokemonsSearch =
+                    await pokemonRepository.fetchPokemonSearch(value);
+                setState(() {
+                  // _pokemons = pok;
+                });
+              }
+              print(value);
+            },
+          ),
           Expanded(
-            child: ListView.separated(
-              itemCount: _pokemons.length,
-              itemBuilder: (context, index) {
-                final Pokemon pokemon = _pokemons[index];
-                return ListTile(
-                  leading: FlutterLogo(),
-                  // leading: ${pokemon.front_default},
-                  title: Text(pokemon.name),
-                  subtitle: Text('${pokemon.id} ${pokemon.base_experience}'),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const Divider(height: 0);
+            child: FutureBuilder(
+              future: _pokemons,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      final pokemon = snapshot.data![index];
+                      return Card(
+                        semanticContainer: true,
+                        child: Container(
+                            margin: const EdgeInsets.all(20),
+                            child: MaterialButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DetailPokemon()));
+                              },
+                              child: ListTile(
+                                title: Text('${pokemon.name}'),
+                                leading: Image.network(
+                                  pokemon.img.toString(),
+                                  width: 64,
+                                  height: 64,
+                                ),
+                              ),
+                            )),
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return const Text("No pokemon");
+                } else {
+                  return const Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                }
               },
             ),
           ),

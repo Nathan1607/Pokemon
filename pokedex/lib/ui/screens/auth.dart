@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-//Mettre const partout pour enlever les lignes bleus warning
-
 class AuthScreen extends StatefulWidget {
-  AuthScreen({Key? key}) : super(key: key);
+  const AuthScreen({Key? key}) : super(key: key);
 
   @override
   _AuthScreenState createState() => _AuthScreenState();
@@ -16,64 +14,56 @@ class _AuthScreenState extends State<AuthScreen> {
       child: Scaffold(
         body: Center(
           child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 RichText(
                     text: TextSpan(
                   text: 'Bienvenue sur l\'application\n'.toUpperCase(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 30.0,
                   ),
                   children: [
                     TextSpan(
                         text: 'Pokedex\n'.toUpperCase(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.red,
                           fontWeight: FontWeight.bold,
                         )),
                   ],
                 )),
-                Text('Votre pokedex portatif',
+                const Text('Votre pokedex portatif',
                     style: TextStyle(fontStyle: FontStyle.italic)),
-                SizedBox(
+                const SizedBox(
                   height: 100.0,
                 ),
                 Form(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const Text('Enter your pseudo'),
+                      const Text(
+                        'Cette application vous permet d\'avoir un aperçu sur les pokémons des générations sorties',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       const SizedBox(
-                        height: 10.0,
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            hintText: 'Ex: Gotaga',
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(0.0),
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(0.0),
-                              borderSide: BorderSide(color: Colors.grey),
-                            )),
-                      ),
-                      SizedBox(
-                        height: 10.0,
+                        height: 50.0,
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 0,
-                          padding: EdgeInsets.symmetric(vertical: 15.0),
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
                         ),
                         onPressed: () =>
                             Navigator.of(context).pushNamed('/Home'),
                         child: Text(
                           'continue'.toUpperCase(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                           ),
                         ),

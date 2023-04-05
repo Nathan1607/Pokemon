@@ -8,7 +8,7 @@ class AddProfil extends StatelessWidget {
   AddProfil({Key? key}) : super(key: key);
 
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _teamController = TextEditingController();
+  final TextEditingController _regionController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
@@ -23,6 +23,9 @@ class AddProfil extends StatelessWidget {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              const SizedBox(
+                height: 15,
+              ),
               TextFormField(
                 controller: _nameController,
                 validator: (value) {
@@ -34,15 +37,15 @@ class AddProfil extends StatelessWidget {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(16))),
-                  prefixIcon: Icon(Icons.apartment),
-                  labelText: "Pseudo du joueur",
+                  prefixIcon: Icon(Icons.add_reaction),
+                  labelText: "Nom du joueur",
                 ),
               ),
               const SizedBox(
                 height: 16,
               ),
               TextFormField(
-                controller: _teamController,
+                controller: _regionController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Le champ ne doit pas être vide';
@@ -52,8 +55,8 @@ class AddProfil extends StatelessWidget {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(16))),
-                  prefixIcon: Icon(Icons.apartment),
-                  labelText: "Team du joueur",
+                  prefixIcon: Icon(Icons.add_location_alt),
+                  labelText: "Région du joueur",
                 ),
               ),
               const SizedBox(
@@ -63,9 +66,9 @@ class AddProfil extends StatelessWidget {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       final String name = _nameController.text;
-                      final String team = _teamController.text;
+                      final String region = _regionController.text;
 
-                      final Account account = Account(0, name, team);
+                      final Account account = Account(0, name, region);
 
                       context.read<AccountCubit>().addAccount(account);
 
