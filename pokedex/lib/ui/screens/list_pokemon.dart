@@ -25,7 +25,7 @@ class _ListPokemonState extends State<ListPokemon> {
     return Scaffold(
       body: Column(
         children: [
-          TextField(
+          /*TextField(
             onChanged: (value) async {
               if (value.length >= 3) {
                 final PokemonSearchRepository pokemonRepository =
@@ -38,7 +38,7 @@ class _ListPokemonState extends State<ListPokemon> {
               }
               print(value);
             },
-          ),
+          ),*/
           Expanded(
             child: FutureBuilder(
               future: _pokemons,
@@ -49,6 +49,7 @@ class _ListPokemonState extends State<ListPokemon> {
                     itemBuilder: (context, index) {
                       final pokemon = snapshot.data![index];
                       return Card(
+                        elevation: 3.0,
                         semanticContainer: true,
                         child: Container(
                             margin: const EdgeInsets.all(20),
@@ -58,7 +59,9 @@ class _ListPokemonState extends State<ListPokemon> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const DetailPokemon()));
+                                            DetailPokemon(
+                                              idPokemon: pokemon.id.toString()
+                                            )));
                               },
                               child: ListTile(
                                 title: Text('${pokemon.name}'),

@@ -5,7 +5,6 @@ import 'package:pokedex/repositories/account_repository.dart';
 import 'package:pokedex/ui/screens/auth.dart';
 import 'package:pokedex/ui/screens/home.dart';
 import 'package:pokedex/ui/screens/add_profil.dart';
-import 'package:pokedex/ui/screens/detail_pokemon.dart';
 
 import 'blocs/account_cubit.dart';
 
@@ -35,7 +34,6 @@ class App extends StatelessWidget {
         '/Auth': (context) => const AuthScreen(),
         '/Home': (context) => const Home(),
         '/Add_Profil': (context) => AddProfil(),
-        '/DetailPokemon':(context) => const DetailPokemon(),
       },
       initialRoute: '/Auth',
     );

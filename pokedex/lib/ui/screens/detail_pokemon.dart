@@ -4,7 +4,8 @@ import '../../models/pokemon.dart';
 import '../../repositories/pokemon_repository.dart';
 
 class DetailPokemon extends StatefulWidget {
-  const DetailPokemon({super.key});
+  final String idPokemon;
+  const DetailPokemon({Key? key, required this.idPokemon}) : super(key: key);
 
   @override
   State<DetailPokemon> createState() => _DetailPokemonState();
@@ -16,7 +17,7 @@ class _DetailPokemonState extends State<DetailPokemon> {
   @override
   void initState() {
     super.initState();
-    _pokemons = PokemonRepository().fetchPokemon();
+    _pokemons = PokemonRepository().fetchPokemonSearch(widget.idPokemon);
   }
 
   @override
@@ -30,41 +31,49 @@ class _DetailPokemonState extends State<DetailPokemon> {
             future: _pokemons,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    final pokemon = snapshot.data![index];
-                    return Card(
-                      semanticContainer: true,
-                      child: Container( 
-                        margin: const EdgeInsets.all(20),
-                        child: Row(
-                          children: [
-                            Image.network(pokemon.img.toString(),
-                            width: 100,
-                            height: 100,
-                            ),
-                            Image.network(pokemon.sprite.toString()
-                            ),
-
-                            Container(
-                              width: 100,
-                              child: Text('data'),
-                            ),
-                            SizedBox(
-                              height: 200,
-                              width: 100,
-                            ),
-                            Container(
-                              child: Text('data 1'),
-                            ),
-                          ],
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(
+                      height: 25.0,
+                    ),
+                    Row(
+                      children: [
+                        Card(
+                          elevation: 4.0,
+                          child: Image.network(snapshot.data![0].img.toString(), 
+                            width: 200,
+                            height: 100
+                          ),
                         ),
-                        
-                      ),
-                      
-                    );
-                  },
+                        Card(
+                          elevation: 10,
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 100,
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(horizontal: 40),
+                                    child: Text(
+                                      snapshot.data![0].name.toString(),
+                                      style: const TextStyle(
+                                       fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        // ),
+                        // Container(
+                        //   margin: const EdgeInsets.symmetric(horizontal: 40),
+                        //   child: Text(snapshot.data![0].name.toString()),
+                        // ),
+                      ],
+                    ),
+                  ],
                 );
               } else if (snapshot.hasError) {
                 return const Text('No Detail');
