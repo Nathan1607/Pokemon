@@ -1,7 +1,8 @@
 # Informations sur Flutter et API
 
 La version de Flutter  utilisé est la 3.7.10 et celle de Dart est la 2.19.6  
-L'API utilisé pour ce projet est Pokebuild API : https://pokebuildapi.fr/api/v1 
+L'API utilisé pour ce projet est Pokebuild API : https://pokebuildapi.fr/api/v1  
+J'ai décidé de changer d'API en cours de projet pour Pokebuild car les informations de l'autre API étaient en anglaises et je voulais faire un pokedex français
 
 # Fonctionnalité
 
