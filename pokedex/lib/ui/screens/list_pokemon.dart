@@ -23,7 +23,9 @@ class _ListPokemonState extends State<ListPokemon> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5.0),
+        child: Column(
         children: [
           /*TextField(
             onChanged: (value) async {
@@ -56,12 +58,14 @@ class _ListPokemonState extends State<ListPokemon> {
                             child: MaterialButton(
                               onPressed: () {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DetailPokemon(
-                                              idPokemon: pokemon.id.toString()
-                                            )));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                      DetailPokemon(
+                                        idPokemon: pokemon.id.toString()
+                                      )
+                                  )
+                                );
                               },
                               child: ListTile(
                                 title: Text('${pokemon.name}'),
@@ -91,6 +95,7 @@ class _ListPokemonState extends State<ListPokemon> {
           ),
         ],
       ),
+      )
     );
   }
 }

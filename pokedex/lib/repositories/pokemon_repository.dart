@@ -3,8 +3,6 @@ import 'package:http/http.dart';
 import '../models/pokemon.dart';
 
 class PokemonRepository {
-  // String limit = '1';
-
   Future<List<Pokemon>> fetchPokemon() async {
     final Response response =
         await get(Uri.parse('https://pokebuildapi.fr/api/v1/pokemon/'));
