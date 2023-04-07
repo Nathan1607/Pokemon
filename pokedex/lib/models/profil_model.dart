@@ -1,9 +1,9 @@
 class Account {
-  final int id;
-  final String name;
-  final String region;
+  int id;
+  String name;
+  String region;
 
-  const Account(this.id,this.name, this.region);
+  Account(this.id, this.name, this.region);
 
   Map<String, dynamic> toJson() {
     return {
@@ -14,10 +14,6 @@ class Account {
   }
 
   factory Account.fromJson(Map<String, dynamic> json) {
-    return Account(
-      json['id'],
-      json['name'],
-      json['region']
-    );
+    return Account(json['id'], json['name'], json['region']);
   }
 }

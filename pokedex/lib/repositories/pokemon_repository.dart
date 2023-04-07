@@ -11,17 +11,17 @@ class PokemonRepository {
 
       final List<dynamic> json = jsonDecode(response.body);
 
-      json.forEach((element) {
+      for (var element in json) {
         final Pokemon pokemon = Pokemon.fromJson(element);
         pokemons.add(pokemon);
-      });
+      }
       return pokemons;
     } else {
       throw Exception('Failed to load Pokemon');
     }
   }
 
-  Future<List<Pokemon>> fetchPokemonSearch(String idPokemon) async {
+  Future<List<Pokemon>> fetchPokemonDetails(String idPokemon) async {
     final Response response = await get(
         Uri.parse('https://pokebuildapi.fr/api/v1/pokemon/$idPokemon'));
     if (response.statusCode == 200) {
@@ -32,14 +32,8 @@ class PokemonRepository {
         pokemons.add(Pokemon.fromJson(jsons));
       }
       return pokemons;
-    }
-
-    else {
+    } else {
       throw Exception('Failed to load Pokemon');
     }
   }
 }
-
-  // String limit = '1';
-  
-

@@ -10,18 +10,16 @@ import 'blocs/account_cubit.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
-  //Instanciation du Cubit
   final AccountRepository accountRepository = AccountRepository();
   final AccountCubit accountCubit = AccountCubit(accountRepository);
   accountCubit.loadAccounts();
   runApp(BlocProvider(
-    create: (BuildContext context) => accountCubit, 
-    child: App()
-  ));
+      create: (BuildContext context) => accountCubit, child: const App()));
 }
 
 class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

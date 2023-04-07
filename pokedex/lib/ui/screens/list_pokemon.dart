@@ -23,24 +23,10 @@ class _ListPokemonState extends State<ListPokemon> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5.0),
-        child: Column(
+        body: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      child: Column(
         children: [
-          /*TextField(
-            onChanged: (value) async {
-              if (value.length >= 3) {
-                final PokemonSearchRepository pokemonRepository =
-                    PokemonSearchRepository();
-                List<Pokemon> pokemonsSearch =
-                    await pokemonRepository.fetchPokemonSearch(value);
-                setState(() {
-                  // _pokemons = pok;
-                });
-              }
-              print(value);
-            },
-          ),*/
           Expanded(
             child: FutureBuilder(
               future: _pokemons,
@@ -58,14 +44,10 @@ class _ListPokemonState extends State<ListPokemon> {
                             child: MaterialButton(
                               onPressed: () {
                                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                      DetailPokemon(
-                                        idPokemon: pokemon.id.toString()
-                                      )
-                                  )
-                                );
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DetailPokemon(
+                                            idPokemon: pokemon.id.toString())));
                               },
                               child: ListTile(
                                 title: Text('${pokemon.name}'),
@@ -95,7 +77,6 @@ class _ListPokemonState extends State<ListPokemon> {
           ),
         ],
       ),
-      )
-    );
+    ));
   }
 }

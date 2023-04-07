@@ -67,15 +67,12 @@ class AddProfil extends StatelessWidget {
                     if (_formKey.currentState!.validate()) {
                       final String name = _nameController.text;
                       final String region = _regionController.text;
-
                       final Account account = Account(0, name, region);
-
                       context.read<AccountCubit>().addAccount(account);
-
                       Navigator.of(context).pop();
                     }
                   },
-                  child: const Text('Valider'))
+                  child: const Text('Valider')),
             ],
           ),
         ),
