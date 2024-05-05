@@ -6,7 +6,7 @@ J'ai décidé de changer d'API en cours de projet pour Pokebuild car les informa
 
 # Fonctionnalité
 
-L'applicatio possède 3 fonctionnalités :  
+L'application possède 3 fonctionnalités :  
   1 - Le listing de tous les pokémons  
   2 - L'accès au détail d'un pokémon sélectionner  
   3 - La création d'un compte 'Joueur'  
